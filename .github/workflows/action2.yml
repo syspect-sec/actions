@@ -1,0 +1,43 @@
+name: Test Action Looking For the script
+
+# This can be dispatched from GitHub web-interface
+on:
+  workflow_dispatch:
+    # These inputs represent the versions you want to test in combination
+    # and can be set from the GitHub web-interface during dispatch
+    # This would be a huge list
+    inputs:
+      os:
+        description: "Select OS to run on"
+        required: true
+        default: "ubuntu-latest"
+        type: choice
+        options:
+          - ubuntu-22.04
+          - ubuntu-24.04
+          - fedora-41
+          - centos-9
+          - debian-latest
+
+# The jobs in the action
+jobs:
+  # Test build on single OS
+  test-actions:
+    runs-on: ${{ inputs.os }}
+
+    steps:
+
+     # Check out the action repository itself with the scripts
+      - name: Check out actions repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      # List all files recursively in the repository
+      - name: List repository contents
+        run: ls -R $GITHUB_WORKSPACE
+
+      # Uses a single installation scripts
+      - name: Install
+        run: bash $GITHUB_WORKSPACE/.github/scripts/gvm-setup.sh

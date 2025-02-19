@@ -162,3 +162,14 @@ jobs:
       # Uses a single installation scripts
       - name: Install
         run: bash $GITHUB_WORKSPACE/.github/scripts/gvm-setup.sh
+        env:
+          OS: ${{ inputs.os }}
+          GVM_LIBS_VERSION: ${{ inputs.GVM_LIBS_VERSION }}
+          GVMD_VERSION: ${{ inputs.GVMD_VERSION }}
+          PG_GVM_VERSION: ${{ inputs.PG_GVM_VERSION }}
+          GSA_VERSION: ${{ inputs.GSA_VERSION }}
+          GSAD_VERSION: ${{ inputs.GSAD_VERSION }}
+          OPENVAS_SMB_VERSION: ${{ inputs.OPENVAS_SMB_VERSION }}
+          OPENVAS_SCANNER_VERSION: ${{ inputs.OPENVAS_SCANNER_VERSION }}
+          OPENVAS_DAEMON: ${{ inputs.OPENVASD_VERSION }}
+          OSPD_OPENVAS_VERSION: ${{ inputs.OSPD_OPENVAS_VERSION }}

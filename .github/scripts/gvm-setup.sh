@@ -6,21 +6,6 @@
 # Set shell variables
 #
 
-# Set all the package versions to be installed
-# from GitHub Actions environment variables
-OS="${{ inputs.os }}"
-GVM_LIBS_VERSION="${{ inputs.GVM_LIBS_VERSION }}"
-GVMD_VERSION="${{ inputs.GVMD_VERSION }}"
-PG_GVM_VERSION="${{ inputs.PG_GVM_VERSION }}"
-GSA_VERSION="${{ inputs.GSA_VERSION }}"
-GSAD_VERSION="${{ inputs.GSAD_VERSION }}"
-OPENVAS_SMB_VERSION="${{ inputs.OPENVAS_SMB_VERSION }}"
-OPENVAS_SCANNER_VERSION="${{ inputs.OPENVAS_SCANNER_VERSION }}"
-OPENVAS_DAEMON="${{ inputs.OPENVASD_VERSION }}"
-OSPD_OPENVAS_VERSION="${{ inputs.OSPD_OPENVAS_VERSION }}"
-GREENBONE_FEED_SYNC_VERSION="${{ inputs.GREENBONE_FEED_SYNC_VERSION }}"
-GVM_TOOLS_VERSION="${{ inputs.GVM_TOOLS_VERSION }}"
-
 # TODO: Check all the versions are valid
 
 # Flags for the script

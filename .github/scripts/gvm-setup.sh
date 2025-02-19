@@ -208,6 +208,23 @@ get_package_manager() {
     esac
 }
 
+# Function to determine the appropriate package manager flags based on the OS
+get_install_flags() {
+    case "$OS" in
+        ubuntu-* | debian-latest)
+            echo "-y"  # Debian-based systems (use -y for apt)
+            ;;
+        fedora-* | centos-*)
+            echo "--no-install-recommends --no-install-suggests --assume-yes"  # Red Hat-based systems (use flags for rpm)
+            ;;
+        *)
+            echo "::error::❌ Unknown OS: $OS" >&2
+            exit 1
+            ;;
+    esac
+}
+
+
 # Function to download a set of packages
 install_packages() {
     local description="$1"
@@ -215,10 +232,11 @@ install_packages() {
     local packages=("$@")
     local package_manager
     package_manager=$(get_package_manager)  # Get the correct package manager
+    install_flags=$(get_install_flags) # Get the appropriate install flags
 
     echo "Installing: $description..."
     # TODO: adjust for the OS
-    if sudo $package_manager install --no-install-recommends --no-install-suggests --assume-yes "${packages[@]}"; then
+    if sudo $package_manager install $install_flags "${packages[@]}"; then
         echo "Successfully installed: $description."
     else
         echo "::error::❌ Error: Failed to install $description." >&2

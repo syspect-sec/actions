@@ -89,77 +89,77 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: greenbone/gvm-libs
-          ref: "tags/v${{ inputs.GVM_LIBS_VERSION }}"
+          ref: "v${{ inputs.GVM_LIBS_VERSION }}"
           path: source/gvm-libs-{{ inputs.GVM_LIBS_VERSION }}
 
       - name: Check out gvmd
         uses: actions/checkout@v4
         with:
           repository: greenbone/gvmd
-          ref: "tags/v${{ inputs.GVMD_VERSION }}"
+          ref: "v${{ inputs.GVMD_VERSION }}"
           path: source/gvmd-${{ inputs.GVMD_VERSION }}
 
       - name: Check out pg-gvm
         uses: actions/checkout@v4
         with:
           repository: greenbone/pg-gvm
-          ref: "tags/v${{ inputs.PG_GVM_VERSION }}"
+          ref: "v${{ inputs.PG_GVM_VERSION }}"
           path: source/pg-gvm-${{ inputs.PG_GVM_VERSION }}
 
       - name: Check out gsa
         uses: actions/checkout@v4
         with:
           repository: greenbone/gsa
-          ref: "tags/v${{ inputs.GSA_VERSION }}"
+          ref: "v${{ inputs.GSA_VERSION }}"
           path: source/gsa-${{ inputs.GSA_VERSION }}
 
       - name: Check out gsad
         uses: actions/checkout@v4
         with:
           repository: greenbone/gsad
-          ref: "tags/v${{ inputs.GSAD_VERSION }}"
+          ref: "v${{ inputs.GSAD_VERSION }}"
           path: source/gsad-${{ inputs.GSAD_VERSION }}
 
       - name: Check out openvas-smb
         uses: actions/checkout@v4
         with:
           repository: greenbone/openvas-smb
-          ref: "tags/v${{ inputs.OPENVAS_SMB_VERSION }}"
+          ref: "v${{ inputs.OPENVAS_SMB_VERSION }}"
           path: source/openvas-smb-${{ inputs.OPENVAS_SMB_VERSION }}
 
       - name: Check out openvas-scanner
         uses: actions/checkout@v4
         with:
           repository: greenbone/openvas-scanner
-          ref: "tags/v${{ inputs.OPENVAS_SCANNER_VERSION }}"
+          ref: "v${{ inputs.OPENVAS_SCANNER_VERSION }}"
           path: source/openvas-scanner-${{ inputs.OPENVAS_SCANNER_VERSION }}
 
       - name: Check out openvasd
         uses: actions/checkout@v4
         with:
           repository: greenbone/openvas-scanner
-          ref: "tags/v${{ inputs.OPENVASD_VERSION }}"
+          ref: "v${{ inputs.OPENVASD_VERSION }}"
           path: source/openvas-scanner-${{ inputs.OPENVASD_VERSION }}
 
       - name: Check out ospd-openvas
         uses: actions/checkout@v4
         with:
           repository: greenbone/ospd-openvas
-          ref: "tags/v${{ inputs.OSPD_OPENVAS_VERSION }}"
+          ref: "v${{ inputs.OSPD_OPENVAS_VERSION }}"
           path: source/ospd-openvas-${{ inputs.OSPD_OPENVAS_VERSION }}
 
       - name: Check out greenbone-feed-sync
         uses: actions/checkout@v4
         with:
           repository: greenbone/greenbone-feed-sync
-          ref: "tags/v${{ inputs.GREENBONE_FEED_SYNC_VERSION }}"
+          ref: "v${{ inputs.GREENBONE_FEED_SYNC_VERSION }}"
           path: source/greenbone-feed-sync-${{ inputs.GREENBONE_FEED_SYNC_VERSION }}
 
       - name: Check out gvm-tools
         uses: actions/checkout@v4
         with:
           repository: greenbone/gvm-tools
-          ref: "tags/v${{ inputs.GVM_TOOLS_VERSION }}"
+          ref: "v${{ inputs.GVM_TOOLS_VERSION }}"
           path: source/gvm-tools-{{ inputs.GVM_TOOLS_VERSION }}
 
       # Uses a single installation scripts

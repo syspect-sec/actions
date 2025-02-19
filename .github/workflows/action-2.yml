@@ -1,4 +1,4 @@
-name: (Single Script) Test Greenbone Build
+name: (Multi-script) Test Greenbone Build
 
 # This can be dispatched from GitHub web-interface
 on:
@@ -156,11 +156,11 @@ jobs:
           fetch-depth: 1
 
       # List all files recursively in the repository
-      - name: List repository contents
+      - name: List $GITHUB_WORKSPACE contents
         run: ls -R $GITHUB_WORKSPACE
 
       # Uses a single installation scripts
-      - name: Install
+      - name: Run the install script
         run: bash $GITHUB_WORKSPACE/.github/scripts/gvm-setup.sh
         env:
           OS: ${{ inputs.os }}

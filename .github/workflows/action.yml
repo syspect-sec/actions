@@ -54,14 +54,6 @@ on:
         description: "Version tag for ospd-openvas"
         required: true
         default: "v22.7"
-      GREENBONE_FEED_SYNC_VERSION:
-        description: "Version tag for greenbone-feed-sync"
-        required: true
-        default: "v22.7"
-      GVM_TOOLS_VERSION:
-        description: "Version tag for gvm-tools"
-        required: true
-        default: "v22.7"
 
 # The jobs in the action
 jobs:

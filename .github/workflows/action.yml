@@ -21,39 +21,39 @@ on:
       GVM_LIBS_VERSION:
         description: "Version tag for gvm-libs"
         required: true
-        default: "v22.7"
+        default: "22.17.0"
       GVMD_VERSION:
         description: "Version tag for gvmd"
         required: true
-        default: "v22.7"
+        default: "25.0.0"
       PG_GVM_VERSION:
         description: "Version tag for pg-gvm"
         required: true
-        default: "v22.7"
+        default: "22.6.7"
       GSA_VERSION:
         description: "Version tag for gsa"
         required: true
-        default: "v22.7"
+        default: "24.2.0"
       GSAD_VERSION:
         description: "Version tag for gsad"
         required: true
-        default: "v22.7"
+        default: "24.2.0"
       OPENVAS_SMB_VERSION:
         description: "Version tag for openvas-smb"
         required: true
-        default: "v22.7"
+        default: "22.5.3"
       OPENVAS_SCANNER_VERSION:
         description: "Version tag for openvas-scanner"
         required: true
-        default: "v22.7"
-      OPENVASD_VERSION:
-        description: "Version tag for openvasd"
-        required: true
-        default: "v23.0"
+        default: "23.15.3"
       OSPD_OPENVAS_VERSION:
         description: "Version tag for ospd-openvas"
         required: true
-        default: "v22.7"
+        default: "22.7.1"
+      OPENVASD_VERSION:
+        description: "Version tag for openvasd"
+        required: true
+        default: "23.15.3"
 
 # The jobs in the action
 jobs:

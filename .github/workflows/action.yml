@@ -158,6 +158,15 @@ jobs:
       - name: List repository contents
         run: ls -R $GITHUB_WORKSPACE
 
+      - name: Remove conflicting PostgreSQL packages
+        run: |
+          sudo apt-get remove --purge postgresql postgresql-common postgresql-client-common -y || true
+          sudo apt-get autoremove -y
+          sudo apt-get clean
+          sudo rm -rf /var/lib/apt/lists/*
+          sudo rm -rf /etc/postgresql /var/lib/postgresql /var/log/postgresql || true
+          sudo apt-get update
+
       # Uses a single installation scripts
       - name: Install
         run: bash $GITHUB_WORKSPACE/.github/scripts/gvm-setup.sh

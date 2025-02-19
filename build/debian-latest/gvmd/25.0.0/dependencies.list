@@ -1,0 +1,10 @@
+libbsd-dev
+libcjson-dev
+libglib2.0-dev
+libgnutls28-dev
+libgpgme-dev
+libical-dev
+libpq-dev
+postgresql-server-dev-all
+rsync
+xsltproc

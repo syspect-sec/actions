@@ -1,0 +1,13 @@
+bison
+libglib2.0-dev
+libgnutls28-dev
+libgcrypt20-dev
+libpcap-dev
+libgpgme-dev
+libksba-dev
+rsync
+nmap
+libjson-glib-dev
+libcurl4-gnutls-dev
+libbsd-dev
+krb5-multidev

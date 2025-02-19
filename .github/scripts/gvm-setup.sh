@@ -248,6 +248,9 @@ install_packages() {
     fi
 }
 
+# Install PostgreSQL server
+install_packages "Required PostgreSQL server" postgresql-common=257build1.1 postgresql
+
 # Install common build dependencies..."
 install_packages "Required build dependencies" $(<"$GITHUB_WORKSPACE/build/build-dependencies.list")
 
@@ -283,9 +286,6 @@ install_packages "Required dependencies for gvm-tools" $(<"$GITHUB_WORKSPACE/bui
 
 # Install Redis server
 install_packages "Required Redis server" redis-server
-
-# Install PostgreSQL server
-install_packages "Required PostgreSQL server" postgresql
 
 # Set success flags and optionally exit
 if [[ $INSTALL_REQ_DEPS_SUCCESS == false ]]; then

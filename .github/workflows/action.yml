@@ -148,20 +148,6 @@ jobs:
           ref: "v${{ inputs.OSPD_OPENVAS_VERSION }}"
           path: source/ospd-openvas-${{ inputs.OSPD_OPENVAS_VERSION }}
 
-      - name: Check out greenbone-feed-sync
-        uses: actions/checkout@v4
-        with:
-          repository: greenbone/greenbone-feed-sync
-          ref: "v${{ inputs.GREENBONE_FEED_SYNC_VERSION }}"
-          path: source/greenbone-feed-sync-${{ inputs.GREENBONE_FEED_SYNC_VERSION }}
-
-      - name: Check out gvm-tools
-        uses: actions/checkout@v4
-        with:
-          repository: greenbone/gvm-tools
-          ref: "v${{ inputs.GVM_TOOLS_VERSION }}"
-          path: source/gvm-tools-{{ inputs.GVM_TOOLS_VERSION }}
-
       # Uses a single installation scripts
       - name: Install
         run: bash .github/scripts/gvm-setup.sh

@@ -26,6 +26,14 @@ jobs:
     runs-on: ${{ inputs.os }}
 
     steps:
+
+     # Check out the action repository itself with the scripts
+      - name: Check out actions repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
       # List all files recursively in the repository
       - name: List repository contents
         run: ls -R $GITHUB_WORKSPACE

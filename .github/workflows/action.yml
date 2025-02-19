@@ -84,6 +84,13 @@ jobs:
           echo "Running on $(uname -a)"
           cat /etc/os-release
 
+      # Check out the action repository itself with the scripts
+      - name: Check out actions repository
+        uses: actions/checkout@v4
+        with:
+          repository: syspect-sec/gvm-libs
+          ref: "latest"
+
       # Check out Greenbone repositories using inputs for versioning
       - name: Check out gvm-libs
         uses: actions/checkout@v4
@@ -150,7 +157,7 @@ jobs:
 
       # List all files recursively in the repository
       - name: List repository contents
-        run: ls -R $GITHUB_WORKSPACE  
+        run: ls -R $GITHUB_WORKSPACE
 
       # Uses a single installation scripts
       - name: Install

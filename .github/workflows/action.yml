@@ -148,6 +148,10 @@ jobs:
           ref: "v${{ inputs.OSPD_OPENVAS_VERSION }}"
           path: source/ospd-openvas-${{ inputs.OSPD_OPENVAS_VERSION }}
 
+      # List all files recursively in the repository
+      - name: List repository contents
+        run: ls -R $GITHUB_WORKSPACE  
+
       # Uses a single installation scripts
       - name: Install
-        run: bash .github/scripts/gvm-setup.sh
+        run: bash $GITHUB_WORKSPACE/.github/scripts/gvm-setup.sh

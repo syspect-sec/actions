@@ -1,0 +1,175 @@
+name: Test Greenbone Build on Multiple Linux Distros
+
+# This can be dispatched from GitHub web-interface
+on:
+  workflow_dispatch:
+    # These inputs represent the versions you want to test in combination
+    # and can be set from the GitHub web-interface during dispatch
+    # This would be a huge list
+    inputs:
+      os:
+        description: "Select OS to run on"
+        required: true
+        default: "ubuntu-latest"
+        type: choice
+        options:
+          - ubuntu-22.04
+          - ubuntu-24.04
+          - fedora-41
+          - centos-9
+          - debian-latest
+      GVM_LIBS_VERSION:
+        description: "Version tag for gvm-libs"
+        required: true
+        default: "v22.7"
+      GVMD_VERSION:
+        description: "Version tag for gvmd"
+        required: true
+        default: "v22.7"
+      PG_GVM_VERSION:
+        description: "Version tag for pg-gvm"
+        required: true
+        default: "v22.7"
+      GSA_VERSION:
+        description: "Version tag for gsa"
+        required: true
+        default: "v22.7"
+      GSAD_VERSION:
+        description: "Version tag for gsad"
+        required: true
+        default: "v22.7"
+      OPENVAS_SMB_VERSION:
+        description: "Version tag for openvas-smb"
+        required: true
+        default: "v22.7"
+      OPENVAS_SCANNER_VERSION:
+        description: "Version tag for openvas-scanner"
+        required: true
+        default: "v22.7"
+      OPENVASD_VERSION:
+        description: "Version tag for openvasd"
+        required: true
+        default: "v23.0"
+      OSPD_OPENVAS_VERSION:
+        description: "Version tag for ospd-openvas"
+        required: true
+        default: "v22.7"
+      GREENBONE_FEED_SYNC_VERSION:
+        description: "Version tag for greenbone-feed-sync"
+        required: true
+        default: "v22.7"
+      GVM_TOOLS_VERSION:
+        description: "Version tag for gvm-tools"
+        required: true
+        default: "v22.7"
+
+# The jobs in the action
+jobs:
+  # Test build on single OS
+  test-gvm-build:
+    runs-on: ${{ inputs.os }}
+
+    # Tracks the success for each component install
+    outputs:
+      GVM_LIBS_INSTALL_SUCCESS: ${{ steps.install_status.outputs.GVM_LIBS_INSTALL_SUCCESS }}
+      GVMD_INSTALL_SUCCESS: ${{ steps.install_status.outputs.GVMD_INSTALL_SUCCESS }}
+      PG_GVM_INSTALL_SUCCESS: ${{ steps.install_status.outputs.PG_GVM_INSTALL_SUCCESS }}
+      GSA_INSTALL_SUCCESS: ${{ steps.install_status.outputs.GSA_INSTALL_SUCCESS }}
+      GSAD_INSTALL_SUCCESS: ${{ steps.install_status.outputs.GSAD_INSTALL_SUCCESS }}
+      OPENVAS_SMB_INSTALL_SUCCESS: ${{ steps.install_status.outputs.OPENVAS_SMB_INSTALL_SUCCESS }}
+      OPENVAS_SCANNER_V1_INSTALL_SUCCESS: ${{ steps.install_status.outputs.OPENVAS_SCANNER_INSTALL_SUCCESS }}
+      OPENVASD_INSTALL_SUCCESS: ${{ steps.install_status.outputs.OPENVASD_INSTALL_SUCCESS }}
+      OSPD_OPENVAS_INSTALL_SUCCESS: ${{ steps.install_status.outputs.OSPD_OPENVAS_INSTALL_SUCCESS }}
+      GREENBONE_FEED_SYNC_INSTALL_SUCCESS: ${{ steps.install_status.outputs.GREENBONE_FEED_SYNC_INSTALL_SUCCESS }}
+      GVM_TOOLS_INSTALL_SUCCESS: ${{ steps.install_status.outputs.GVM_TOOLS_INSTALL_SUCCESS }}
+
+    steps:
+      # Dispay OS input and release version
+      - name: Show OS
+        run: echo "Testing GVM build on ${{ inputs.os }}"
+      - name: Display OS Information
+        run: |
+          echo "Running on $(uname -a)"
+          cat /etc/os-release
+
+      # Check out Greenbone repositories using inputs for versioning
+      - name: Check out gvm-libs
+        uses: actions/checkout@v4
+        with:
+          repository: greenbone/gvm-libs
+          ref: ${{ inputs.GVM_LIBS_VERSION }}
+          path: source/gvm-libs-{{ inputs.GVM_LIBS_VERSION }}
+
+      - name: Check out gvmd
+        uses: actions/checkout@v4
+        with:
+          repository: greenbone/gvmd
+          ref: ${{ inputs.GVMD_VERSION }}
+          path: source/gvmd-${{ inputs.GVMD_VERSION }}
+
+      - name: Check out pg-gvm
+        uses: actions/checkout@v4
+        with:
+          repository: greenbone/pg-gvm
+          ref: ${{ inputs.PG_GVM_VERSION }}
+          path: source/pg-gvm-${{ inputs.PG_GVM_VERSION }}
+
+      - name: Check out gsa
+        uses: actions/checkout@v4
+        with:
+          repository: greenbone/gsa
+          ref: ${{ inputs.GSA_VERSION }}
+          path: source/gsa-${{ inputs.GSA_VERSION }}
+
+      - name: Check out gsad
+        uses: actions/checkout@v4
+        with:
+          repository: greenbone/gsad
+          ref: ${{ inputs.GSAD_VERSION }}
+          path: source/gsad-${{ inputs.GSAD_VERSION }}
+
+      - name: Check out openvas-smb
+        uses: actions/checkout@v4
+        with:
+          repository: greenbone/openvas-smb
+          ref: ${{ inputs.OPENVAS_SMB_VERSION }}
+          path: source/openvas-smb-${{ inputs.OPENVAS_SMB_VERSION }}
+
+      - name: Check out openvas-scanner
+        uses: actions/checkout@v4
+        with:
+          repository: greenbone/openvas-scanner
+          ref: ${{ inputs.OPENVAS_SCANNER_VERSION }}
+          path: source/openvas-scanner-${{ inputs.OPENVAS_SCANNER_VERSION }}
+
+      - name: Check out openvasd
+        uses: actions/checkout@v4
+        with:
+          repository: greenbone/openvas-scanner
+          ref: ${{ inputs.OPENVASD_VERSION }}
+          path: source/openvas-scanner-${{ inputs.OPENVASD_VERSION }}
+
+      - name: Check out ospd-openvas
+        uses: actions/checkout@v4
+        with:
+          repository: greenbone/ospd-openvas
+          ref: ${{ inputs.OSPD_OPENVAS_VERSION }}
+          path: source/ospd-openvas-${{ inputs.OSPD_OPENVAS_VERSION }}
+
+      - name: Check out greenbone-feed-sync
+        uses: actions/checkout@v4
+        with:
+          repository: greenbone/greenbone-feed-sync
+          ref: ${{ inputs.GREENBONE_FEED_SYNC_VERSION }}
+          path: source/greenbone-feed-sync-${{ inputs.GREENBONE_FEED_SYNC_VERSION }}
+
+      - name: Check out gvm-tools
+        uses: actions/checkout@v4
+        with:
+          repository: greenbone/gvm-tools
+          ref: ${{ inputs.GVM_TOOLS_VERSION }}
+          path: source/gvm-tools-{{ inputs.GVM_TOOLS_VERSION }}
+
+      # Uses a single installation scripts
+      - name: Install
+        run: bash .github/scripts/gvm-setup.sh
